@@ -21,7 +21,7 @@ function App() {
         //SHOW LOGIN 
         <SpotifyAuth
           clientID='0166a2461c6c4692b5dbb305776488d4'
-          redirectUri='http://localhost:3000/'
+          redirectUri='https://jacoba2000.github.io/Spotify-Uncovered/'
           scopes={
             [
               Scopes.userReadEmail, 
