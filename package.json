@@ -2,7 +2,7 @@
   "name": "spotify-uncovered",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jacoba2000.github.io",
+  "homepage": "https://jacoba2000.github.io/Spotify-Uncovered",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
