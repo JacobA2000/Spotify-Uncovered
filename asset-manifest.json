@@ -1,7 +1,7 @@
 {
   "main.css": "/Spotify-Uncovered/static/css/main.d8b50236.chunk.css",
-  "main.js": "/Spotify-Uncovered/static/js/main.a5fe6162.chunk.js",
-  "main.js.map": "/Spotify-Uncovered/static/js/main.a5fe6162.chunk.js.map",
+  "main.js": "/Spotify-Uncovered/static/js/main.3428fae2.chunk.js",
+  "main.js.map": "/Spotify-Uncovered/static/js/main.3428fae2.chunk.js.map",
   "static/css/1.c5132e0d.chunk.css": "/Spotify-Uncovered/static/css/1.c5132e0d.chunk.css",
   "static/js/1.bccd381e.chunk.js": "/Spotify-Uncovered/static/js/1.bccd381e.chunk.js",
   "static/js/1.bccd381e.chunk.js.map": "/Spotify-Uncovered/static/js/1.bccd381e.chunk.js.map",
@@ -10,6 +10,6 @@
   "static/css/main.d8b50236.chunk.css.map": "/Spotify-Uncovered/static/css/main.d8b50236.chunk.css.map",
   "static/css/1.c5132e0d.chunk.css.map": "/Spotify-Uncovered/static/css/1.c5132e0d.chunk.css.map",
   "index.html": "/Spotify-Uncovered/index.html",
-  "precache-manifest.8efbb368196c34c0055109469077f1ee.js": "/Spotify-Uncovered/precache-manifest.8efbb368196c34c0055109469077f1ee.js",
+  "precache-manifest.64f2ff70a33e227db513b4bd0128129e.js": "/Spotify-Uncovered/precache-manifest.64f2ff70a33e227db513b4bd0128129e.js",
   "service-worker.js": "/Spotify-Uncovered/service-worker.js"
 }
