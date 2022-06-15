@@ -22,6 +22,7 @@ function App() {
         <SpotifyAuth
           clientID='0166a2461c6c4692b5dbb305776488d4'
           redirectUri='https://jacoba2000.github.io/Spotify-Uncovered/'
+          //redirectUri='http://localhost:3000/'
           scopes={
             [
               Scopes.userReadEmail, 
@@ -157,7 +158,9 @@ function SpotifyInfo() {
             {shortTermArtists.map(artist => (
               <li className="artist-list-item" key={artist.id} onClick={() => openURI(artist.uri)}>
                 <div className="artist-info">
+
                   <img className="artist-img" src={artist.images[0].url} alt={artist.name}/>
+
                   <p className="artist-name">{artist.name}</p>
                 </div>
               </li>
@@ -211,7 +214,9 @@ function SpotifyInfo() {
             {longTermArtists.map(artist => (
               <li className="artist-list-item" key={artist.id} onClick={() => openURI(artist.uri)}>
                 <div className="artist-info">
+
                   <img className="artist-img" src={artist.images[0].url} alt={artist.name}/>
+
                   <p className="artist-name">{artist.name}</p>
                 </div>
               </li>

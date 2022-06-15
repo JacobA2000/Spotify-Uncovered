@@ -112,7 +112,7 @@ body{
 
   display: grid;
   
-  grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));;
+  grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));;
   grid-column-gap: 1em;
   grid-row-gap: 1em;
 
@@ -122,7 +122,7 @@ body{
 
 .artist-list-item {
   width: 100%;  
-  height: 7.5em;
+  height: 5em;
 
   background-color: #1DB954;
   border-radius: 0.5em;
@@ -147,8 +147,12 @@ body{
   overflow: hidden;
 }
 
+
 .artist-img {
   height: 100%;
+  width: 50%;
+
+  object-fit: fill;
 
   border-top-left-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
@@ -158,7 +162,7 @@ body{
   font-size: 0.8em;
   font-weight: bold;
 
-  max-width: 100%;
+  max-width: 50%;
   max-height: 100%;
 
   margin: auto;
