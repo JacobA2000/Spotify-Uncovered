@@ -8,6 +8,8 @@ import './App.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
+import { PieChart } from 'react-minimal-pie-chart';
+
 function App() {
   
   const [token, setToken] = React.useState(Cookies.get("spotifyAuthToken"))
@@ -38,6 +40,25 @@ function App() {
   );
 }
 
+async function convertGenresToPieData(genres) {
+  //CONVERT GENRES OBJECT TO PIECHART DATA
+  let data = []
+  for (let genre in genres) {
+    data.push({
+      title: genre.toLocaleUpperCase(),
+      value: genres[genre],
+      color: '#' + Math.floor(Math.random() * (256-100) + 100).toString(16) + Math.floor(Math.random() * (256-100) + 100).toString(16) + Math.floor(Math.random() * (256-100) + 100).toString(16)
+    })
+  }
+
+  //SORT GENRES BY VALUE
+  data.sort((a, b) => {
+    return b.value - a.value
+  })
+
+  return data
+}
+
 function SpotifyInfo() {
 
   const [token] = React.useState(Cookies.get("spotifyAuthToken"))
@@ -45,35 +66,27 @@ function SpotifyInfo() {
   const [profileImage, setProfileImage] = React.useState('')
   const [profileName, setProfileName] = React.useState('')
   const [profileURL, setProfileURL] = React.useState('')
+
   const [shortTermTracks, setShortTermTracks] = React.useState([])
   const [shortTermArtists, setShortTermArtists] = React.useState([])
+  const [shortTermGenres, setShortTermGenres] = React.useState([])
+
   const [mediumTermTracks, setMediumTermTracks] = React.useState([])
   const [mediumTermArtists, setMediumTermArtists] = React.useState([])
+  const [mediumTermGenres, setMediumTermGenres] = React.useState([])
+    
   const [longTermTracks, setLongTermTracks] = React.useState([])
   const [longTermArtists, setLongTermArtists] = React.useState([])
+  const [longTermGenres, setLongTermGenres] = React.useState([])
 
-  const getTopTracks = (api, term) => {
-    let termTracksObj = api.getTopTracks(term)
-
-    termTracksObj.then(res => {
-      return res.items
-    })
-  }
-
-  const getTopArtists = (api, term) => {
-    let termArtistsObj = api.getTopArtists('short_term')
-
-    termArtistsObj.then(res => {
-      return res.items
-    })
-  }
-    
   //GET SPOTIFY TOP TRACKS FOR CURRENT USER VIA THE GIVEN TOKEN ENSURING ONLY 1 FETCH IS SENT
   React.useEffect(() => {
     if(token) {
       let api = new SpotifyAPI(token)
 
       let profileObj = api.getProfile()
+
+      let genres = {}
 
       profileObj.then(res => {
         setProfileImage(res.images[0].url)
@@ -91,6 +104,13 @@ function SpotifyInfo() {
       let shortTermArtistsObj = api.getTopArtists('short_term')
 
       shortTermArtistsObj.then(res => {
+
+        genres = api.getTopArtistsGenres(res)
+
+        convertGenresToPieData(genres).then(res => {
+          setShortTermGenres(res)
+        })
+
         setShortTermArtists(res.items)
       })
 
@@ -104,6 +124,12 @@ function SpotifyInfo() {
       let mediumTermArtistsObj = api.getTopArtists('medium_term')
 
       mediumTermArtistsObj.then(res => {
+        genres = api.getTopArtistsGenres(res)
+
+        convertGenresToPieData(genres).then(res => {
+          setMediumTermGenres(res)
+        })
+
         setMediumTermArtists(res.items)
       })
 
@@ -117,9 +143,14 @@ function SpotifyInfo() {
       let longTermArtistsObj = api.getTopArtists('long_term')
 
       longTermArtistsObj.then(res => {
+        genres = api.getTopArtistsGenres(res)
+
+        convertGenresToPieData(genres).then(res => {
+          setLongTermGenres(res)
+        })
+
         setLongTermArtists(res.items)
       })
-
 
     }
   }, [token])
@@ -166,6 +197,31 @@ function SpotifyInfo() {
               </li>
             ))}
           </ul>
+
+          <h2>Top Genres</h2>
+          {/* PIECHART THAT SHOWS LABELS FOR EACH GENRE */}
+          <div className="piechart-container">
+            {/* PIECHART KEY */}
+            <div className="piechart-key">
+              {shortTermGenres.map(genre => (
+                <div className="piechart-key-item" key={genre.title}>
+                  <p className="piechart-key-title" style={{color: genre.color, fontSize: '1em'}}>{genre.title}</p>
+             </div>
+              ))}
+            </div>
+
+            <PieChart
+              data={shortTermGenres}
+              lineWidth={50}
+              radius={PieChart.defaultProps.radius - 14}
+              segmentsShift={2}
+              style={{
+                height: '75vw',
+                width: '75vw',
+                margin: '0 auto',
+              }}
+            />
+          </div>
         </TabPanel>
         
         {/* MEDIUM TERM */}
@@ -193,6 +249,31 @@ function SpotifyInfo() {
               </li>
             ))}
           </ul>
+
+          <h2>Top Genres</h2>
+          {/* PIECHART THAT SHOWS LABELS FOR EACH GENRE */}
+          <div className="piechart-container">
+            {/* PIECHART KEY */}
+            <div className="piechart-key">
+              {mediumTermGenres.map(genre => (
+                <div className="piechart-key-item" key={genre.title}>
+                  <p className="piechart-key-title" style={{color: genre.color, fontSize: '1em'}}>{genre.title}</p>
+             </div>
+              ))}
+            </div>
+
+            <PieChart
+              data={mediumTermGenres}
+              lineWidth={50}
+              radius={PieChart.defaultProps.radius - 14}
+              segmentsShift={2}
+              style={{
+                height: '75vw',
+                width: '75vw',
+                margin: '0 auto',
+              }}
+            />
+          </div>
         </TabPanel>
         
         {/* LONG TERM */}
@@ -222,6 +303,31 @@ function SpotifyInfo() {
               </li>
             ))}
           </ul>
+            
+          <h2>Top Genres</h2>
+          {/* PIECHART THAT SHOWS LABELS FOR EACH GENRE */}
+          <div className="piechart-container">
+            {/* PIECHART KEY */}
+            <div className="piechart-key">
+              {longTermGenres.map(genre => (
+                <div className="piechart-key-item" key={genre.title}>
+                  <p className="piechart-key-title" style={{color: genre.color, fontSize: '1em'}}>{genre.title}</p>
+             </div>
+              ))}
+            </div>
+
+            <PieChart
+              data={longTermGenres}
+              lineWidth={50}
+              radius={PieChart.defaultProps.radius - 14}
+              segmentsShift={2}
+              style={{
+                height: '75vw',
+                width: '75vw',
+                margin: '0 auto',
+              }}
+            />
+          </div>
         </TabPanel>
 
       </Tabs>

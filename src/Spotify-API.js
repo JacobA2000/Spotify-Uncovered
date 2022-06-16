@@ -26,6 +26,28 @@ class SpotifyAPI {
             }
         }).then(res => res.json());
     }
+
+    //GET THE GENRES OF EACH ARTIST IN THE TOP ARTISTS AND INCREMENT A COUNT FOR EACH GENRE
+    getTopArtistsGenres(topArtists) {
+        let genres = {};
+
+        for (let artist of topArtists.items) {
+            let artistGenres = artist.genres;
+
+            for (let genre of artistGenres) {
+                if (genres[genre]) {
+                    genres[genre]++;
+                } else {
+                    genres[genre] = 1;
+                }
+            }
+        }
+
+        return genres;
+    }
+
+
+    
 }
 
 export default SpotifyAPI;
