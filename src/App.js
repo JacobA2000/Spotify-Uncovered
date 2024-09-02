@@ -172,193 +172,101 @@ function SpotifyInfo() {
 
         {/* SHORT TERM */}
         <TabPanel>
-          <h2>Top Tracks</h2>
-          <ul className="track-list">
-            {shortTermTracks.map(track => (
-              <li className="track-list-item" key={track.id} onClick={() => openURI(track.uri)}>
-                <div className="track-info">
-                  {track.album.images.length > 0 ?
-                    <img className="track-img" src={track.album.images[0].url} alt={track.name}/>
-                    :
-                    <img className="track-img" src={process.env.PUBLIC_URL + "/empty_art.png"} alt={track.name}/>
-                  }
-                  <p className="track-name">{track.name}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          <h2>Top Artists</h2>
-          <ul className="artist-list">
-            {shortTermArtists.map(artist => (
-              <li className="artist-list-item" key={artist.id} onClick={() => openURI(artist.uri)}>
-                <div className="artist-info">
-
-                  {artist.images.length > 0 ?
-                    (<img className="artist-img" src={artist.images[0].url} alt={artist.name}/>) 
-                    :
-                    (<img className="artist-img" src={process.env.PUBLIC_URL + "/Default_pfp.svg"} alt={artist.name}/>)
-                  }
-
-                  <p className="artist-name">{artist.name}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          <h2>Top Genres</h2>
-          {/* PIECHART THAT SHOWS LABELS FOR EACH GENRE */}
-          <div className="piechart-container">
-            {/* PIECHART KEY */}
-            <div className="piechart-key">
-              {shortTermGenres.map(genre => (
-                <div className="piechart-key-item" key={genre.title}>
-                  <p className="piechart-key-title" style={{color: genre.color, fontSize: '1em'}}>{genre.title}</p>
-             </div>
-              ))}
-            </div>
-
-            <PieChart
-              data={shortTermGenres}
-              lineWidth={50}
-              radius={36}
-              segmentsShift={2}
-              style={{
-                height: '75vw',
-                width: '75vw',
-                margin: '0 auto',
-              }}
-            />
-          </div>
+          <MusicDataTab
+            tracks ={shortTermTracks}
+            artists={shortTermArtists}
+            genres={shortTermGenres}
+          />
         </TabPanel>
         
         {/* MEDIUM TERM */}
         <TabPanel>
-          <h2>Top Tracks</h2>
-          <ul className="track-list">
-            {mediumTermTracks.map(track => (
-              <li className="track-list-item" key={track.id} onClick={() => openURI(track.uri)}>
-                <div className="track-info">
-                  {track.album.images.length > 0 ?
-                    <img className="track-img" src={track.album.images[0].url} alt={track.name}/>
-                    :
-                    <img className="track-img" src={process.env.PUBLIC_URL + "/empty_art.png"} alt={track.name}/>
-                  }
-                  <p className="track-name">{track.name}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          <h2>Top Artists</h2>
-          <ul className="artist-list">
-            {mediumTermArtists.map(artist => (
-              <li className="artist-list-item" key={artist.id} onClick={() => openURI(artist.uri)}>
-                <div className="artist-info">
-                  {artist.images.length > 0 ?
-                    (<img className="artist-img" src={artist.images[0].url} alt={artist.name}/>) 
-                    :
-                    (<img className="artist-img" src={process.env.PUBLIC_URL + "/Default_pfp.svg"} alt={artist.name}/>)
-                  }
-                  <p className="artist-name">{artist.name}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          <h2>Top Genres</h2>
-          {/* PIECHART THAT SHOWS LABELS FOR EACH GENRE */}
-          <div className="piechart-container">
-            {/* PIECHART KEY */}
-            <div className="piechart-key">
-              {mediumTermGenres.map(genre => (
-                <div className="piechart-key-item" key={genre.title}>
-                  <p className="piechart-key-title" style={{color: genre.color, fontSize: '1em'}}>{genre.title}</p>
-             </div>
-              ))}
-            </div>
-
-            <PieChart
-              data={mediumTermGenres}
-              lineWidth={50}
-              radius={36}
-              segmentsShift={2}
-              style={{
-                height: '75vw',
-                width: '75vw',
-                margin: '0 auto',
-              }}
-            />
-          </div>
+          <MusicDataTab
+            tracks ={mediumTermTracks}
+            artists={mediumTermArtists}
+            genres={mediumTermGenres}
+          />
         </TabPanel>
-        
+
         {/* LONG TERM */}
         <TabPanel>
-          <h2>Top Tracks</h2>
-          <ul className="track-list">
-            {longTermTracks.map(track => (
-              <li className="track-list-item" key={track.id} onClick={() => openURI(track.uri)}>
-                <div className="track-info">
-                  {track.album.images.length > 0 ?
-                    <img className="track-img" src={track.album.images[0].url} alt={track.name}/>
-                    :
-                    <img className="track-img" src={process.env.PUBLIC_URL + "/empty_art.png"} alt={track.name}/>
-                  }
-                  <p className="track-name">{track.name}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          <h2>Top Artists</h2>
-          <ul className="artist-list">
-            {longTermArtists.map(artist => (
-              <li className="artist-list-item" key={artist.id} onClick={() => openURI(artist.uri)}>
-                <div className="artist-info">
-                  
-                  {artist.images.length > 0 ?
-                    (<img className="artist-img" src={artist.images[0].url} alt={artist.name}/>) 
-                    :
-                    (<img className="artist-img" src={process.env.PUBLIC_URL + "/Default_pfp.svg"} alt={artist.name}/>)
-                  }
-                  
-                  <p className="artist-name">{artist.name}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-            
-          <h2>Top Genres</h2>
-          {/* PIECHART THAT SHOWS LABELS FOR EACH GENRE */}
-          <div className="piechart-container">
-            {/* PIECHART KEY */}
-            <div className="piechart-key">
-              {longTermGenres.map(genre => (
-                <div className="piechart-key-item" key={genre.title}>
-                  <p className="piechart-key-title" style={{color: genre.color, fontSize: '1em'}}>{genre.title}</p>
-             </div>
-              ))}
-            </div>
-
-            <PieChart
-              data={longTermGenres}
-              lineWidth={50}
-              radius={36}
-              segmentsShift={2}
-              style={{
-                height: '75vw',
-                width: '75vw',
-                margin: '0 auto',
-              }}
-            />
-          </div>
+          <MusicDataTab
+            tracks ={longTermTracks}
+            artists={longTermArtists}
+            genres={longTermGenres}
+          />
         </TabPanel>
-
+        
       </Tabs>
 
     </div>
 
   )
+}
+
+function MusicDataTab({tracks, artists, genres}){
+  return (
+    <div>
+      <h2>Top Tracks</h2>
+        <ul className="track-list">
+          {tracks.map(track => (
+            <li className="track-list-item" key={track.id} onClick={() => openURI(track.uri)}>
+              <div className="track-info">
+                {track.album.images.length > 0 ?
+                  <img className="track-img" src={track.album.images[0].url} alt={track.name}/>
+                  :
+                  <img className="track-img" src={process.env.PUBLIC_URL + "/empty_art.png"} alt={track.name}/>
+                }
+                <p className="track-name">{track.name}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <h2>Top Artists</h2>
+        <ul className="artist-list">
+          {artists.map(artist => (
+            <li className="artist-list-item" key={artist.id} onClick={() => openURI(artist.uri)}>
+              <div className="artist-info">
+
+                {artist.images.length > 0 ?
+                  (<img className="artist-img" src={artist.images[0].url} alt={artist.name}/>) 
+                  :
+                  (<img className="artist-img" src={process.env.PUBLIC_URL + "/Default_pfp.svg"} alt={artist.name}/>)
+                }
+
+                <p className="artist-name">{artist.name}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <h2>Top Genres</h2>
+        {/* PIECHART THAT SHOWS LABELS FOR EACH GENRE */}
+        <div className="piechart-container">
+          {/* PIECHART KEY */}
+          <div className="piechart-key">
+            {genres.map(genre => (
+              <div className="piechart-key-item" key={genre.title}>
+                <p className="piechart-key-title" style={{color: genre.color, fontSize: '1em'}}>{genre.title}</p>
+            </div>
+            ))}
+          </div>
+
+          <PieChart
+            data={genres}
+            lineWidth={50}
+            radius={36}
+            segmentsShift={2}
+            style={{
+              height: '75vw',
+              width: '75vw',
+              margin: '0 auto',
+            }}
+          />
+        </div>
+    </div>
+  ) 
 }
 
 function openURI(uri) {
