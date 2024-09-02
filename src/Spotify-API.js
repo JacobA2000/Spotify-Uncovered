@@ -24,7 +24,8 @@ class SpotifyAPI {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }
-        }).then(res => res.json());
+        })
+        .then(res => res.json());
     }
 
     //GET THE GENRES OF EACH ARTIST IN THE TOP ARTISTS AND INCREMENT A COUNT FOR EACH GENRE

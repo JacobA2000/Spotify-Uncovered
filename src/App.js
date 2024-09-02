@@ -23,8 +23,8 @@ function App() {
         //SHOW LOGIN 
         <SpotifyAuth
           clientID='0166a2461c6c4692b5dbb305776488d4'
-          redirectUri='https://jacoba2000.github.io/Spotify-Uncovered/'
-          //redirectUri='http://localhost:3000/'
+          //redirectUri='https://jacoba2000.github.io/Spotify-Uncovered/'
+          redirectUri='http://localhost:3000/'
           scopes={
             [
               Scopes.userReadEmail, 
@@ -177,7 +177,11 @@ function SpotifyInfo() {
             {shortTermTracks.map(track => (
               <li className="track-list-item" key={track.id} onClick={() => openURI(track.uri)}>
                 <div className="track-info">
-                  <img className="track-img" src={track.album.images[0].url} alt={track.name}/>
+                  {track.album.images.length > 0 ?
+                    <img className="track-img" src={track.album.images[0].url} alt={track.name}/>
+                    :
+                    <img className="track-img" src={process.env.PUBLIC_URL + "/empty_art.png"} alt={track.name}/>
+                  }
                   <p className="track-name">{track.name}</p>
                 </div>
               </li>
@@ -190,7 +194,11 @@ function SpotifyInfo() {
               <li className="artist-list-item" key={artist.id} onClick={() => openURI(artist.uri)}>
                 <div className="artist-info">
 
-                  <img className="artist-img" src={artist.images[0].url} alt={artist.name}/>
+                  {artist.images.length > 0 ?
+                    (<img className="artist-img" src={artist.images[0].url} alt={artist.name}/>) 
+                    :
+                    (<img className="artist-img" src={process.env.PUBLIC_URL + "/Default_pfp.svg"} alt={artist.name}/>)
+                  }
 
                   <p className="artist-name">{artist.name}</p>
                 </div>
@@ -213,7 +221,7 @@ function SpotifyInfo() {
             <PieChart
               data={shortTermGenres}
               lineWidth={50}
-              radius={PieChart.defaultProps.radius - 14}
+              radius={36}
               segmentsShift={2}
               style={{
                 height: '75vw',
@@ -231,7 +239,11 @@ function SpotifyInfo() {
             {mediumTermTracks.map(track => (
               <li className="track-list-item" key={track.id} onClick={() => openURI(track.uri)}>
                 <div className="track-info">
-                  <img className="track-img" src={track.album.images[0].url} alt={track.name}/>
+                  {track.album.images.length > 0 ?
+                    <img className="track-img" src={track.album.images[0].url} alt={track.name}/>
+                    :
+                    <img className="track-img" src={process.env.PUBLIC_URL + "/empty_art.png"} alt={track.name}/>
+                  }
                   <p className="track-name">{track.name}</p>
                 </div>
               </li>
@@ -243,7 +255,11 @@ function SpotifyInfo() {
             {mediumTermArtists.map(artist => (
               <li className="artist-list-item" key={artist.id} onClick={() => openURI(artist.uri)}>
                 <div className="artist-info">
-                  <img className="artist-img" src={artist.images[0].url} alt={artist.name}/>
+                  {artist.images.length > 0 ?
+                    (<img className="artist-img" src={artist.images[0].url} alt={artist.name}/>) 
+                    :
+                    (<img className="artist-img" src={process.env.PUBLIC_URL + "/Default_pfp.svg"} alt={artist.name}/>)
+                  }
                   <p className="artist-name">{artist.name}</p>
                 </div>
               </li>
@@ -265,7 +281,7 @@ function SpotifyInfo() {
             <PieChart
               data={mediumTermGenres}
               lineWidth={50}
-              radius={PieChart.defaultProps.radius - 14}
+              radius={36}
               segmentsShift={2}
               style={{
                 height: '75vw',
@@ -283,7 +299,11 @@ function SpotifyInfo() {
             {longTermTracks.map(track => (
               <li className="track-list-item" key={track.id} onClick={() => openURI(track.uri)}>
                 <div className="track-info">
-                  <img className="track-img" src={track.album.images[0].url} alt={track.name}/>
+                  {track.album.images.length > 0 ?
+                    <img className="track-img" src={track.album.images[0].url} alt={track.name}/>
+                    :
+                    <img className="track-img" src={process.env.PUBLIC_URL + "/empty_art.png"} alt={track.name}/>
+                  }
                   <p className="track-name">{track.name}</p>
                 </div>
               </li>
@@ -295,9 +315,13 @@ function SpotifyInfo() {
             {longTermArtists.map(artist => (
               <li className="artist-list-item" key={artist.id} onClick={() => openURI(artist.uri)}>
                 <div className="artist-info">
-
-                  <img className="artist-img" src={artist.images[0].url} alt={artist.name}/>
-
+                  
+                  {artist.images.length > 0 ?
+                    (<img className="artist-img" src={artist.images[0].url} alt={artist.name}/>) 
+                    :
+                    (<img className="artist-img" src={process.env.PUBLIC_URL + "/Default_pfp.svg"} alt={artist.name}/>)
+                  }
+                  
                   <p className="artist-name">{artist.name}</p>
                 </div>
               </li>
@@ -319,7 +343,7 @@ function SpotifyInfo() {
             <PieChart
               data={longTermGenres}
               lineWidth={50}
-              radius={PieChart.defaultProps.radius - 14}
+              radius={36}
               segmentsShift={2}
               style={{
                 height: '75vw',
