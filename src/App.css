@@ -91,6 +91,8 @@ body{
 
 .track-img {
   height: 100%;
+  aspect-ratio: 1/1;
+  object-fit: fill;
 
   border-top-left-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
@@ -150,8 +152,8 @@ body{
 
 .artist-img {
   height: 100%;
-  width: 50%;
 
+  aspect-ratio: 1/1;
   object-fit: fill;
 
   border-top-left-radius: 0.5em;

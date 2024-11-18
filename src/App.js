@@ -160,7 +160,7 @@ function SpotifyInfo() {
       <div className="profile">
         <img className="profile-img" src={profileImage} alt={profileName}/>
         <p className="profile-name">{profileName}</p>
-        <a className="profile-url"href={profileURL} target="_blank">View Profile on Spotify</a>
+        <a className="profile-url"href={profileURL} target="_blank" rel="noreferrer">View Profile on Spotify</a>
       </div>
 
       <Tabs>
